@@ -43,16 +43,6 @@
 
         public async Task Open()
         {
-            foreach (var teacher in Teachers)
-            {
-                teacher.AddComment($"Starting educating students {string.Join(",", Students.Select(s => s.Name))} in the {Id} class.");
-            }
-
-            foreach (var student in Students)
-            {
-                student.AddComment($"Education started with teachers {string.Join(",", Teachers.Select(t => t.Name))} in the {Id} class.");
-            }
-
             AddComment($"The {Id} class is open for students {string.Join(", ", Students.Select(s => s.Name))} and they will be tutored by {string.Join(", ", Teachers.Select(t => t.Name))}.");
             await AddNoteOnWhiteBoard(string.Join($";{Environment.NewLine}", Comments.Select(c => c)));
         }

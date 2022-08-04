@@ -6,7 +6,6 @@
         {
             Name = name;
             Id = id;
-            Comments = new List<string>();
         }
 
         public string Id { get; private set; }

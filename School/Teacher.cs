@@ -5,7 +5,6 @@
         public Teacher(string name)
         {
             Name = name;
-            Comments = new List<string>();
         }
     }
 }
