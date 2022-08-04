@@ -23,9 +23,23 @@ namespace UnitTests
         }
 
         [Fact]
+        public async Task CallBaseProperty()
+        {
+            _schoolClass.CallBase = true;
+
+            await _school.Open();
+
+            var comments = _schoolClass.Object.Comments;
+            _writeToConsole(string.Join($";{Environment.NewLine}", comments.Select(c => c)));
+        }
+
+
+        [Fact]
         public async Task SimpleCallBase()
         {
-            _schoolClass.Setup(c => c.AddComment(It.IsAny<string>())).CallBase();
+            _schoolClass
+                .Setup(c => c.AddComment(It.IsAny<string>()))
+                .CallBase();
 
             await _school.Open();
 
@@ -36,7 +50,9 @@ namespace UnitTests
         [Fact]
         public async Task SimpleCallBack()
         {
-            _schoolClass.Setup(c => c.AddComment(It.IsAny<string>())).Callback(_writeToConsole);
+            _schoolClass
+                .Setup(c => c.AddComment(It.IsAny<string>()))
+                .Callback(_writeToConsole);
 
             await _school.Open();
         }
